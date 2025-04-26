@@ -3,6 +3,7 @@ from typing import List, Optional, Dict, Any
 import time
 from prometheus_client import Counter, Histogram, generate_latest
 from fastapi.responses import Response
+from fastapi.middleware.cors import CORSMiddleware
 
 # OpenTelemetry imports
 from opentelemetry import trace
@@ -26,6 +27,16 @@ app = FastAPI(
     description="A simple API to search for products.",
     version="1.0.0"
 )
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["null"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # Instrument FastAPI with OpenTelemetry
 FastAPIInstrumentor.instrument_app(app)

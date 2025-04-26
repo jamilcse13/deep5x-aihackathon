@@ -3,4 +3,5 @@ include
 lib  
 lib64  
 pyvenv.cfg
-
+search_app/__pycache__/*
+search_app/output.log
